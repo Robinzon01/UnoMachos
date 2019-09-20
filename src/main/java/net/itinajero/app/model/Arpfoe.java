@@ -1,35 +1,62 @@
 package net.itinajero.app.model;
 
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "ARPFOE")
-public class Arpfoe {
-	
+public class Arpfoe implements Serializable {
 
-	private String no_cia;
-    @Id
-	private String no_orden;
+	private static final long serialVersionUID = 1L;
+	@EmbeddedId
+    private IdArpfoe objIdArp;
 	
 	private String no_cliente;
 	private String no_vendedor;
+	private Date fecha_registro;
 
-	public String getNo_cia() {
-		return no_cia;
+//	@OneToMany(mappedBy = "arpfol",fetch = FetchType.EAGER)
+//	@JoinColumns({
+//	@JoinColumn(name = "no_cia", insertable=false, updatable=false),
+//	@JoinColumn(name = "no_orden", insertable=false, updatable=false)
+//     })
+	
+	@OneToMany(mappedBy = "arpfoe",fetch = FetchType.EAGER)
+	private List<Arpfol> arpfols;
+		
+
+	public List<Arpfol> getArpfols() {
+		return arpfols;
 	}
 
-	public void setNo_cia(String no_cia) {
-		this.no_cia = no_cia;
+	public void setArpfols(List<Arpfol> arpfols) {
+		this.arpfols = arpfols;
 	}
 
-	public String getNo_orden() {
-		return no_orden;
+	public Date getFecha_registro() {
+		return fecha_registro;
 	}
 
-	public void setNo_orden(String no_orden) {
-		this.no_orden = no_orden;
+	public void setFecha_registro(Date fecha_registro) {
+		this.fecha_registro = fecha_registro;
+	}
+
+
+	public IdArpfoe getObjIdArp() {
+		return objIdArp;
+	}
+
+	public void setObjIdArp(IdArpfoe objIdArp) {
+		this.objIdArp = objIdArp;
 	}
 
 	public String getNo_cliente() {
@@ -50,10 +77,12 @@ public class Arpfoe {
 
 	@Override
 	public String toString() {
-		return "Arpfoe [no_cia=" + no_cia + ", no_orden=" + no_orden + ", no_cliente=" + no_cliente + ", no_vendedor="
-				+ no_vendedor + "]";
+		return "Arpfoe [objIdArp=" + objIdArp + ", no_cliente=" + no_cliente + ", no_vendedor=" + no_vendedor
+				+ ", fecha_registro=" + fecha_registro + ", arpfols=" + arpfols + "]";
 	}
-	
-	
+
+
+
+    
 
 }

@@ -23,8 +23,8 @@
 	<bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource">
 		<property name="dataSourceName" value="escuela" />
 		<property name="URL" value="jdbc:oracle:thin:@192.168.1.88:1521:ESCUELA" />
-		<property name="user" value="FACTU" />
-		<property name="password" value="FACTU" />
+		<property name="user" value="LLE" />
+		<property name="password" value="CDSI" />
 	</bean>
 
 	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
